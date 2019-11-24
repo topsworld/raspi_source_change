@@ -10,6 +10,7 @@ path_source_software_config="${path_main}/config/software.source."
 path_source_system_config="${path_main}/config/system.source."
 path_website_list="${path_main}/config/website.list"
 
+echo "Start executing the script."
 # TODO: Get the system version code
 echo "Step 1: Get the system version code."
 version_code=`cat /etc/os-release | grep 'VERSION_CODENAME'`
@@ -17,14 +18,14 @@ echo $version_code
 if [[ $version_code =~ "buster" ]]; then
   path_source_software_config="${path_source_software_config}buster"
   path_source_system_config="${path_source_system_config}buster"
-elif [[ $version_code =~ "stretch" ]]; then
-  echo "[Warn] The system is not up-to-date, it is recommended to update"
-  path_source_software_config="${path_source_software_config}stretch"
-  path_source_system_config="${path_source_system_config}stretch"
-elif [[ $version_code =~ "jessie" ]]; then
-  echo "[Warn] The system is not up-to-date, it is recommended to update"
-  path_source_software_config="${path_source_software_config}jessie"
-  path_source_system_config="${path_source_system_config}jessie"
+# elif [[ $version_code =~ "stretch" ]]; then
+#   echo "[Warn] The system is not up-to-date, it is recommended to update"
+#   path_source_software_config="${path_source_software_config}stretch"
+#   path_source_system_config="${path_source_system_config}stretch"
+# elif [[ $version_code =~ "jessie" ]]; then
+#   echo "[Warn] The system is not up-to-date, it is recommended to update"
+#   path_source_software_config="${path_source_software_config}jessie"
+#   path_source_system_config="${path_source_system_config}jessie"
 else
 echo "[Error] Unsupported system version code. Exit!"
 exit 1
@@ -152,7 +153,7 @@ echo "sudo sed -e \"s/source_url/${result_url}/g\" \"$path_source_system_config\
 echo "Step 6: Update the list of sources."
 echo "    Please wait a minute to update the source list."
 sudo apt-get update #>/dev/null 2>&1
-read -p "Do you want to perform the update? It will take some time to execute (yes/no, default: no):" result
+read -p "Do you want to perform the update? It will take some time to execute (yes/no, default: no): " result
 if [[ $result == "yes" || $result == "y" ]]; then
   echo "Start the update task (Press Ctrl+C to exit)."
   sudo apt-get upgrade -y #>/dev/null 2>&1

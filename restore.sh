@@ -9,6 +9,7 @@ path_source_system="/etc/apt/sources.list.d/raspi.list"
 path_source_software_bak="/etc/apt/sources.list.bak"
 path_source_system_bak="/etc/apt/sources.list.d/raspi.list.bak"
 
+echo "Start executing the script."
 # TODO: Determine network.
 echo "Step 1: Determine whether to connect to the network?"
 ping -c 1 114.114.114.114 > /dev/null 2>&1
@@ -37,7 +38,7 @@ else
   echo "    [Exist] system source backup file: ${path_source_system_bak}"
 fi
 
-read -p "Are you sure you are restoring the source file? (yes/no, default: no):" result
+read -p "Are you sure you are restoring the source file? (yes/no, default: no): " result
 if [[ $result == "yes" || $result == "y" ]]; then
   echo "Start the restore task (Press Ctrl+C to exit)."
   sudo cp /etc/apt/sources.list.bak /etc/apt/sources.list
@@ -45,7 +46,7 @@ if [[ $result == "yes" || $result == "y" ]]; then
   sudo rm /etc/apt/sources.list.bak
   sudo rm /etc/apt/sources.list.d/raspi.list.bak
 else
-  echo "Action cancellation."
+  echo "Restore action cancellation."
   exit 1
 fi
 
@@ -53,14 +54,12 @@ fi
 echo "Step 3: Update the list of sources."
 echo "    Please wait a minute to update the source list."
 sudo apt-get update #>/dev/null 2>&1
-read -p "Do you want to perform the update? It will take some time to execute (yes/no, default: no):" result
+read -p "Do you want to perform the update? It will take some time to execute (yes/no, default: no): " result
 if [[ $result == "yes" || $result == "y" ]]; then
   echo "Start the update task (Press Ctrl+C to exit)."
   sudo apt-get upgrade -y #>/dev/null 2>&1
   sudo apt-get dist-upgrade 
 else 
-  echo "Upgrade action cancellation"
+  echo "Upgrade action cancellation."
 fi
-echo "[OK] The source was replaced successfully."
-
-
+echo "[OK] The source was restored successfully."

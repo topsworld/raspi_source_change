@@ -130,20 +130,20 @@ result_url=(${result_url//\//\\\/})
 # TODO: Replace with the selected source.
 echo "Step 5: Replace with the selected source."
 # Back up the original file
-if ! [ -f "${path_source_software}.swbak" ]
+if ! [ -f "${path_source_software}.bak" ]
 then
   echo "    [Not Exist] software source original file, Back up files"
-  sudo cp /etc/apt/sources.list /etc/apt/sources.list.swbak
+  sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 else
-  echo "    [Exist] software source original file: ${path_source_software}.swbak"
+  echo "    [Exist] software source original file: ${path_source_software}.bak"
 fi
 
-if ! [ -f "${path_source_system}.swbak" ]
+if ! [ -f "${path_source_system}.bak" ]
 then
   echo "    [Not Exist] system source original file, Back up files"
-  sudo cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.swbak
+  sudo cp /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.bak
 else
-  echo "    [Exist] system source original file: ${path_source_system}.swbak"
+  echo "    [Exist] system source original file: ${path_source_system}.bak"
 fi
 echo "sudo sed -e \"s/source_url/${result_url}/g\" \"$path_source_software_config\" > ${path_source_software}" | sudo bash
 echo "sudo sed -e \"s/source_url/${result_url}/g\" \"$path_source_system_config\" > ${path_source_system}" | sudo bash
@@ -157,6 +157,8 @@ if [[ $result == "yes" || $result == "y" ]]; then
   echo "Start the update task (Press Ctrl+C to exit)."
   sudo apt-get upgrade -y #>/dev/null 2>&1
   sudo apt-get dist-upgrade 
+else 
+  echo "Upgrade action cancellation"
 fi
 echo "[OK] The source was replaced successfully."
 

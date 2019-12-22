@@ -1,21 +1,28 @@
 [raspbian]
 website=http://raspbian.raspberrypi.org/raspbian/ 
+websitepi=http://archive.raspberrypi.org/debian/
 
 [ustc]
 website=http://mirrors.ustc.edu.cn/raspbian/raspbian/
+websitepi=http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/
 
 [aliyun]
 website=http://mirrors.aliyun.com/raspbian/raspbian/
+websitepi=http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/
 
 [tuna.tsinghua]
 website=http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/
+websitepi=http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/
 
 [scau]
 website=https://mirrors.scau.edu.cn/raspbian/
+websitepi=https://mirrors.scau.edu.cn/raspberrypi/
 
 [neusoft]
 website=http://mirrors.neusoft.edu.cn/raspbian/raspbian/ 
+websitepi=http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/
 
 [cqu]
 website=http://mirrors.cqu.edu.cn/raspbian/raspbian/
+websitepi=http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/
 

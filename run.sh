@@ -125,6 +125,8 @@ do
 done
 result_url=`readIni $path_website_list $result_name website`
 result_url=(${result_url//\//\\\/}) 
+result_urlpi=`readIni $path_website_list $result_name websitepi`
+result_urlpi=(${result_urlpi//\//\\\/}) 
 #echo $result_url
 #exit 1
 
@@ -147,7 +149,7 @@ else
   echo "    [Exist] system source original file: ${path_source_system}.bak"
 fi
 echo "sudo sed -e \"s/source_url/${result_url}/g\" \"$path_source_software_config\" > ${path_source_software}" | sudo bash
-echo "sudo sed -e \"s/source_url/${result_url}/g\" \"$path_source_system_config\" > ${path_source_system}" | sudo bash
+echo "sudo sed -e \"s/source_url/${result_urlpi}/g\" \"$path_source_system_config\" > ${path_source_system}" | sudo bash
 
 # TODO: Update the list of sources.
 echo "Step 6: Update the list of sources."

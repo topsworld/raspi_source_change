@@ -1,3 +1,7 @@
+[jlau.mirrors]
+website=http://10.5.0.223:9000/raspbian/raspbian/ 
+websitepi=http://10.5.0.223:9000/raspberrypi/
+
 [raspbian]
 website=http://raspbian.raspberrypi.org/raspbian/ 
 websitepi=http://archive.raspberrypi.org/debian/
